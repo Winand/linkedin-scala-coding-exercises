@@ -9,17 +9,15 @@ class PasswordCheckerTest extends AnyWordSpec {
       isValidPassword("qWeRtYul") shouldBe false
       isValidPassword("quizzle123") shouldBe false
     }
-  }
-  "isValidPassword" should {
+
     "detect invalid passwords w/o lowercase letters" in {
       isValidPassword("QU1ZL_TS") shouldBe false
     }
-  }
-  "isValidPassword" should {
+
     "detect valid passwords" in {
       isValidPassword("(ScalaChallenge2)") shouldBe true
       isValidPassword("b3stpAssw0rd!") shouldBe true
-      isValidPassword("Qu1zl_ts") shouldBe true
+      isValidPassword("qu1zL_ts") shouldBe true
     }
   }
 }
