@@ -34,11 +34,10 @@ enum E12(val resistance: Double) extends Resistor {
 
 object Resistance {
   def range(resistors: List[Resistor]): (Double, Double) =
-    resistors.map(r =>
-      (r.resistance * (1 - r.tolerance), r.resistance * (1 + r.tolerance))
-    ).reduce((cur, next) =>
-      (cur._1 + next._1, cur._2 + next._2)
-    )
+    resistors.foldLeft((.0, .0))((acc, r) => (
+      acc._1 + r.resistance * (1 - r.tolerance),
+      acc._2 + r.resistance * (1 + r.tolerance)
+    ))
 
   def main(args: Array[String]): Unit = {
     println(range(List(E12.TenOhm, E6.TenOhm)))
