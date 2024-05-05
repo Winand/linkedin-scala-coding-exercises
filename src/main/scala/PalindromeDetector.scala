@@ -6,6 +6,11 @@ object PalindromeDetector {
     leftPart == rightPart
   }
 
+  def isPalindromeV2(word: String): Boolean = {
+    val lower = word.toLowerCase
+    lower == lower.reverse
+  }
+
   def main(args: Array[String]): Unit = {
     println(s"Akka - ${isPalindrome("Akka")}")
     println(s"canoe - ${isPalindrome("canoe")}")

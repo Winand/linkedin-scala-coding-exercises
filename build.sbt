@@ -4,5 +4,6 @@ ThisBuild / scalaVersion := "3.4.1"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "linkedin-scala-coding-exercises"
+    name := "linkedin-scala-coding-exercises",
+    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.18" % "test"
   )
