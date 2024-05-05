@@ -4,8 +4,9 @@ object PasswordChecker {
     val hasPunct = password.exists(c => punct.contains(c))
     val hasDigits = password.exists(_.isDigit)
     val hasUppercase = password.exists(_.isUpper)
+    val hasLowercase = password.exists(_.isLower)
     val lenCondition = password.length >= 8
-    lenCondition & hasPunct & hasDigits & hasUppercase
+    lenCondition & hasPunct & hasDigits & hasUppercase & hasLowercase
   }
 
   def main(args: Array[String]): Unit = {
