@@ -12,6 +12,7 @@ object PiEstimation {
   def checkNewPoint: Boolean = {
     val x = nextDouble()
     val y = nextDouble()
+    // sqrt(x * x + y * y) <= 1
     val yForX = sqrt(1 - x * x)
     y < yForX
   }
@@ -24,9 +25,31 @@ object PiEstimation {
       if (checkNewPoint) inside + 1 else inside
     )
 
+  /**
+   * Solution from course author.
+   */
+  def pi(iterations: Long): Double = {
+    def loop(inside: Long, total: Long): Double =
+      if total == iterations then (4.0 * inside.toDouble / total.toDouble)
+      else {
+        val x = nextDouble - 0.5
+        val y = nextDouble - 0.5
+
+        val dist = math.sqrt((x * x) + (y * y))
+
+        if dist < 0.5 then loop(inside + 1, total + 1)
+        else loop(inside, total + 1)
+      }
+
+    loop(0, 0)
+  }
+
   def main(args: Array[String]): Unit = {
-    val count = 100000
-    val result = estimatePointsInQuarterCircle(count)
-    println(result.toDouble / count * 4)
+    val count = 1000000
+    for _ <- 1 to 10 yield {
+      val result = estimatePointsInQuarterCircle(count)
+      println(s"Solution: ${result.toDouble / count * 4}")
+      println(s"Example solution: ${pi(count)}")
+    }
   }
 }
