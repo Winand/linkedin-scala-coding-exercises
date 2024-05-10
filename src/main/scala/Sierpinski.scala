@@ -16,6 +16,15 @@ object Sierpinski {
   def sierpinski(depth: Int): Image =
     sierpinski(depth, triangle)
 
+  /**
+   * Recursive version.
+   */
+  def sierpinski_recursive(depth: Int): Image =
+    if depth == 1 then triangle
+    else
+      val img = sierpinski_recursive(depth - 1)
+      img.beside(img).below(img)
+
   @main def drawSierpinski(): Unit =
     sierpinski(5).draw()
 }
